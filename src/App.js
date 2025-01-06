@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Header from './components/Header';
+import Nav from './components/Nav';
+import BookingPage from './components/BookingPage';
+import ConfirmedBooking from './components/ConfirmedBooking';
+import Footer from './components/Footer';
 import './App.css';
 
-function App() {
+const App = () => {
   return (
-    <>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </>
+    <Router>
+      <Header />
+      <Nav />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/reservations" element={<BookingPage />} />
+        <Route path="/confirmed" element={<ConfirmedBooking />} />
+      </Routes>
+      <Footer />
+    </Router>
   );
-}
+};
+
+const Home = () => {
+  return <h1>Welcome to Little Lemon</h1>;
+};
 
 export default App;
